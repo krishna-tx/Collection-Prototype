@@ -11,12 +11,13 @@ class CollectionVC: UIViewController {
     
     private lazy var collectionView: UICollectionView = {
         let layout = self.createCompositionalLayout()
+        
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.alwaysBounceVertical = false;
         collectionView.register(Cell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.backgroundColor = .gray
-        collectionView.translatesAutoresizingMaskIntoConstraints = false  // Add this line
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.layoutMargins = UIEdgeInsets(top: 0, left: 32, bottom: 0, right: 32)
         return collectionView
     }()
@@ -31,7 +32,7 @@ class CollectionVC: UIViewController {
             self.collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             self.collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -50)
         ])
-        self.collectionView.collectionViewLayout.invalidateLayout()
+        self.collectionView.collectionViewLayout.collectionView?.layoutIfNeeded()
     }
     
     private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
@@ -53,12 +54,12 @@ class CollectionVC: UIViewController {
             items.forEach { item in
                 let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
                 let normalized = distanceFromCenter / environment.container.contentSize.width
-                let alpha = normalized
+                
                 let cell = self.collectionView.cellForItem(at: item.indexPath) as? Cell
-                cell?.slideView.alpha = alpha
+                cell?.slideView.alpha = normalized
             }
         }
-
+        
         return UICollectionViewCompositionalLayout(section: section)
     }
 }

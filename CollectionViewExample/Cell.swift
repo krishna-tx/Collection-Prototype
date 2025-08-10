@@ -17,7 +17,7 @@ class Cell: UICollectionViewCell {
         return view
     }()
     
-    let risingText: UILabel = {
+    private let risingText: UILabel = {
         let label = UILabel()
         label.text = "This is some rising text"
         label.textColor = .white
@@ -25,7 +25,7 @@ class Cell: UICollectionViewCell {
         return label
     }()
     
-    let stationaryText: UILabel = {
+    private let stationaryText: UILabel = {
         let label = UILabel()
         label.text = "This is some stationary text"
         label.textColor = .white
@@ -33,7 +33,7 @@ class Cell: UICollectionViewCell {
         return label
     }()
     
-    let button: UIButton = {
+    private let button: UIButton = {
         let button = UIButton()
         button.setTitle("Click Me", for: .normal)
         button.backgroundColor = .red
@@ -63,14 +63,14 @@ class Cell: UICollectionViewCell {
             self.slideView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor)
         ])
         
-        self.textNormalConstraint = self.risingText.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 250)
-        self.textRaisedConstraint = self.risingText.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 200)
-        self.risingText.alpha = 0
-        
         NSLayoutConstraint.activate([
             self.stationaryText.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
             self.stationaryText.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 250)
         ])
+        
+        self.textNormalConstraint = self.risingText.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 250)
+        self.textRaisedConstraint = self.risingText.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 200)
+        self.risingText.alpha = 0
         
         NSLayoutConstraint.activate([
             self.risingText.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
