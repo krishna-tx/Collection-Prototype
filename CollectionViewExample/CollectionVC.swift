@@ -32,7 +32,8 @@ class CollectionVC: UIViewController {
             self.collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             self.collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -50)
         ])
-        self.collectionView.collectionViewLayout.collectionView?.layoutIfNeeded()
+        
+        self.collectionView.collectionViewLayout.collectionView?.layoutIfNeeded() // force visibleItemsInvalidationHandler to execute initially
     }
     
     private func createCompositionalLayout() -> UICollectionViewCompositionalLayout {
@@ -66,7 +67,7 @@ class CollectionVC: UIViewController {
 
 extension CollectionVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 4
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

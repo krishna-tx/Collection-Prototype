@@ -51,11 +51,13 @@ class Cell: UICollectionViewCell {
         self.contentView.backgroundColor = .black
         self.contentView.layer.cornerRadius = 8
         
+        // Setup Subviews
         self.contentView.addSubview(self.risingText)
         self.contentView.addSubview(self.stationaryText)
         self.contentView.addSubview(self.button)
         self.contentView.addSubview(self.slideView)
 
+        // Setup Constraints
         NSLayoutConstraint.activate([
             self.slideView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
             self.slideView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
@@ -68,9 +70,10 @@ class Cell: UICollectionViewCell {
             self.stationaryText.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 250)
         ])
         
+        // Create the two types of constraints
         self.textNormalConstraint = self.risingText.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 250)
         self.textRaisedConstraint = self.risingText.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 200)
-        self.risingText.alpha = 0
+        self.risingText.alpha = 0 // initially hidden
         
         NSLayoutConstraint.activate([
             self.risingText.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
@@ -92,6 +95,7 @@ class Cell: UICollectionViewCell {
         self.textNormalConstraint.isActive = false
         self.textRaisedConstraint.isActive = true
         
+        // Animate the rising text to become visible and rise up according to the two constraints
         UIView.animate(withDuration: 0.25) {
             self.risingText.alpha = 1
             self.contentView.layoutIfNeeded()
