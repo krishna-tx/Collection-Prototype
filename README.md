@@ -7,3 +7,5 @@ I discussed this during my final EoD presentation, but we can create two `NSLayo
 
 ## Explanation of the Swipe Animation
 This can be achieved by having a plain white view that is added as a subview above all other subviews. Then, in the `visibleItemsInvalidationHandler`, we can manipulate the `alpha` value of the white view based on the distance the card is from the center of the `CollectionView`. 
+
+https://github.com/user-attachments/assets/18901d63-aed5-41c6-a848-f0bf380105d9
